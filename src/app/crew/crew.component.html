@@ -1,0 +1,32 @@
+<h3>Crew</h3>
+<div class="table-responsive">
+   <table class="table table-striped table-hover">
+      <tr>
+         <th>Name: (click to edit)</th>
+         <th>Remove:</th>
+         
+      </tr>
+      <tr *ngFor="let member of crew">
+         <td>
+            <span *ngIf="memberBeingEdited !== member; else elseBlock">
+               <!-- display state of member -->
+               <span (click)="edit(member)" class="editable-text">{{member.name}}</span>
+               <span *ngIf="member.firstMission"> - 1st</span>
+               
+            </span>
+            <ng-template #elseBlock>
+               <!-- edit state of member -->
+               <input class="form-control" #updatedName (keyup.enter)="save(updatedName.value, member)" value="{{member.name}}" />
+               <button class='btn btn-primary btn-sm' (click)="save(updatedName.value, member)">Edit</button>
+            </ng-template>
+         </td>
+         <td><button class='btn btn-danger btn-sm' (click)="remove(member)">Remove</button></td>
+      </tr>
+
+   </table>
+
+</div>
+
+<input #name type="text" />
+<label>First mission<input class="form-control" #firstMission type="checkbox" /></label>
+<button class='btn btn-primary btn-sm' (click)="add(name.value, firstMission.checked)">Add</button>
