@@ -1,25 +1,57 @@
-<div class="displayBox">
+<div class="space-card">
     <h3>Equipment</h3>
-    <ul style="text-align: left;">
-        <li *ngFor="let item of equipmentItems">
-
-            <span *ngIf="equipmentBeingEdited !== item; else elseBlock">
-                <!-- display state of member -->
-                <span (click)="edit(item)" class="editable-text">{{item.name}}</span>
-                <button class='btn-primary' (click)="remove(item)">Remove</button>
-            </span>
-
-            <ng-template #elseBlock>
-                <!-- edit state of member -->
-                <input #updatedName (keyup.enter)="save(updatedName.value, item)" value="{{item.name}}" />
-                <button class='btn-primary' (click)="save(updatedName.value, item)">Save</button>
-            </ng-template>
-
-        </li>
-    </ul>
-    <input #name type="text" />
-    <button class='btn-primary' (click)="add(name.value)">Add</button>
-
+    
+    <div class="card-content">
+        <table class="space-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of equipmentItems; let i = index">
+                    <td>
+                        <span *ngIf="equipmentBeingEdited !== item; else editBlock">
+                            <span class="equipment-name">{{item.name}}</span>
+                        </span>
+                        
+                        <ng-template #editBlock>
+                            <input [id]="'equipment-input-' + i"
+                                   (keyup.enter)="save(getInputValue('equipment-input-' + i), item)" 
+                                   value="{{item.name}}" 
+                                   placeholder="Enter equipment name" 
+                                   aria-label="Equipment name"/>
+                        </ng-template>
+                    </td>
+                    <td class="actions">
+                        <span *ngIf="equipmentBeingEdited !== item; else saveBlock">
+                            <button class="icon-button btn-edit" (click)="edit(item)" title="Edit Equipment">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="icon-button btn-remove" (click)="remove(item)" title="Remove Equipment">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </span>
+                        
+                        <ng-template #saveBlock>
+                            <button class="icon-button btn-save" (click)="save(getInputValue('equipment-input-' + i), item)" title="Save Changes">
+                                <i class="fas fa-save"></i>
+                            </button>
+                        </ng-template>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="card-footer">
+        <div class="add-form">
+            <input #name type="text" placeholder="New equipment name" aria-label="New equipment name"/>
+            <button class="btn-add" (click)="add(name.value)">
+                <i class="fas fa-plus-circle"></i>
+                Add Equipment
+            </button>
+        </div>
+    </div>
 </div>
-
-<hr>

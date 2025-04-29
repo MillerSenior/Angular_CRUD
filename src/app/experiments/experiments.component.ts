@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 interface Experiment {
@@ -44,5 +44,10 @@ export class ExperimentsComponent implements OnInit {
   save(name: string, experiment: Experiment) {
     experiment.name = name;
     this.experimentBeingEdited = null;
+  }
+
+  getInputValue(id: string): string {
+    const element = document.getElementById(id) as HTMLInputElement;
+    return element ? element.value : '';
   }
 }

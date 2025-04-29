@@ -1,6 +1,22 @@
-<app-header style="text-align: center;"></app-header>
-<div class="row">
-  <div class="col-sm-4"><app-crew></app-crew></div>
-  <div class="col-sm-4"><app-equipment></app-equipment></div>
-  <div class="col-sm-4"><app-experiments></app-experiments></div>
-</div> 
+<div class="space-bg"></div>
+<header class="navbar">
+  <div class="container">
+    <h1 class="navbar-title">
+      <i class="fas fa-rocket"></i> Mission Planning Dashboard
+    </h1>
+  </div>
+</header>
+
+<div class="sidebar">
+  <app-header></app-header>
+</div>
+
+<main class="main-content">
+  <div class="container">
+    <div class="card-grid">
+      <app-crew></app-crew>
+      <app-equipment></app-equipment>
+      <app-experiments></app-experiments>
+    </div>
+  </div>
+</main> 

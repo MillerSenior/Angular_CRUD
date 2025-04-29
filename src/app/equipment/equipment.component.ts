@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 interface Equipment {
@@ -42,5 +42,10 @@ export class EquipmentComponent implements OnInit {
   save(name: string, equipment: Equipment) {
     equipment.name = name;
     this.equipmentBeingEdited = null;
+  }
+
+  getInputValue(id: string): string {
+    const element = document.getElementById(id) as HTMLInputElement;
+    return element ? element.value : '';
   }
 }

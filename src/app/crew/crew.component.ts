@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 interface CrewMember {
@@ -58,5 +58,10 @@ export class CrewComponent implements OnInit {
   save(name: string, member: CrewMember) {
     member.name = name;
     this.memberBeingEdited = null;
+  }
+
+  getInputValue(id: string): string {
+    const element = document.getElementById(id) as HTMLInputElement;
+    return element ? element.value : '';
   }
 }

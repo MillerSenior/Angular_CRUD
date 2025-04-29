@@ -1,32 +1,69 @@
-<h3>Crew</h3>
-<div class="table-responsive">
-   <table class="table table-striped table-hover">
-      <tr>
-         <th>Name: (click to edit)</th>
-         <th>Remove:</th>
-         
-      </tr>
-      <tr *ngFor="let member of crew">
-         <td>
-            <span *ngIf="memberBeingEdited !== member; else elseBlock">
-               <!-- display state of member -->
-               <span (click)="edit(member)" class="editable-text">{{member.name}}</span>
-               <span *ngIf="member.firstMission"> - 1st</span>
-               
-            </span>
-            <ng-template #elseBlock>
-               <!-- edit state of member -->
-               <input class="form-control" #updatedName (keyup.enter)="save(updatedName.value, member)" value="{{member.name}}" />
-               <button class='btn btn-primary btn-sm' (click)="save(updatedName.value, member)">Edit</button>
-            </ng-template>
-         </td>
-         <td><button class='btn btn-danger btn-sm' (click)="remove(member)">Remove</button></td>
-      </tr>
-
-   </table>
-
+<div class="space-card">
+    <h3>Crew Members</h3>
+    
+    <div class="card-content">
+        <table class="space-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let member of crew; let i = index">
+                    <td>
+                        <span *ngIf="memberBeingEdited !== member; else editBlock">
+                            <span class="member-name">{{member.name}}</span>
+                        </span>
+                        
+                        <ng-template #editBlock>
+                            <input [id]="'crew-input-' + i"
+                                   (keyup.enter)="save(getInputValue('crew-input-' + i), member)" 
+                                   value="{{member.name}}" 
+                                   placeholder="Enter name" 
+                                   aria-label="Member name"/>
+                        </ng-template>
+                    </td>
+                    <td>
+                        <span [class.badge-success]="!member.firstMission" 
+                              [class.badge-warning]="member.firstMission" 
+                              class="badge">
+                            {{member.firstMission ? 'First Mission' : 'Experienced'}}
+                        </span>
+                    </td>
+                    <td class="actions">
+                        <span *ngIf="memberBeingEdited !== member; else saveBlock">
+                            <button class="icon-button btn-edit" (click)="edit(member)" title="Edit Member">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="icon-button btn-remove" (click)="remove(member)" title="Remove Member">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </span>
+                        
+                        <ng-template #saveBlock>
+                            <button class="icon-button btn-save" (click)="save(getInputValue('crew-input-' + i), member)" title="Save Changes">
+                                <i class="fas fa-save"></i>
+                            </button>
+                        </ng-template>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="card-footer">
+        <div class="add-form">
+            <input #name type="text" placeholder="New crew member name" aria-label="New crew member name"/>
+            <div class="checkbox-group">
+                <input #isFirst type="checkbox" id="isFirstMission"/>
+                <label for="isFirstMission">First Mission</label>
+            </div>
+            <button class="btn-add" (click)="add(name.value, isFirst.checked)">
+                <i class="fas fa-plus-circle"></i>
+                Add Member
+            </button>
+        </div>
+    </div>
 </div>
-
-<input #name type="text" />
-<label>First mission<input class="form-control" #firstMission type="checkbox" /></label>
-<button class='btn btn-primary btn-sm' (click)="add(name.value, firstMission.checked)">Add</button>
