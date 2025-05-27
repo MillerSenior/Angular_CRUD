@@ -6,23 +6,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./equipment.component.css']
 })
 export class EquipmentComponent implements OnInit {
-  equipment: string[] = [];
+  equipmentItems: string[] = [];
   
   constructor() { }
 
   ngOnInit() {
   }
 
-  addEquipment(item: string) {
+  add(item: string) {
     if (item.trim()) {
-      this.equipment.push(item.trim());
+      this.equipmentItems.push(item.trim());
     }
   }
 
   removeEquipment(item: string) {
-    const index = this.equipment.indexOf(item);
+    const index = this.equipmentItems.indexOf(item);
     if (index > -1) {
-      this.equipment.splice(index, 1);
+      this.equipmentItems.splice(index, 1);
     }
   }
 }

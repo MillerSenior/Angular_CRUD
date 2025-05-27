@@ -13,6 +13,10 @@ export class ExperimentsComponent implements OnInit {
   ngOnInit() {
   }
 
+  add(experiment: string) {
+    this.addExperiment(experiment);
+  }
+
   addExperiment(experiment: string) {
     if (experiment.trim()) {
       this.experiments.push(experiment.trim());
