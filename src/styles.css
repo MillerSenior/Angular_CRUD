@@ -49,6 +49,7 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+  color: #FFFFFF;
 }
 
 .card:hover {
@@ -62,7 +63,7 @@ body {
   border-bottom: 1px solid rgba(0, 173, 181, 0.2);
   font-family: 'Orbitron', sans-serif;
   padding: 1rem 1.5rem;
-  color: var(--space-light);
+  color: #FFFFFF;
   font-size: 1.2rem;
   font-weight: 500;
 }
@@ -72,6 +73,7 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
+  color: #FFFFFF;
 }
 
 /* List Styles */
@@ -107,6 +109,7 @@ body {
   font-size: 0.9rem;
   letter-spacing: 1px;
   padding: 0.5rem 1rem;
+  color: #FFFFFF;
 }
 
 .btn-primary {
@@ -135,7 +138,7 @@ body {
 .form-control {
   background-color: rgba(57, 62, 70, 0.3);
   border: 1px solid rgba(0, 173, 181, 0.2);
-  color: var(--space-light);
+  color: #FFFFFF !important;
   border-radius: 8px;
   padding: 0.5rem 1rem;
   flex: 1;
@@ -151,7 +154,7 @@ body {
 }
 
 .form-control::placeholder {
-  color: rgba(238, 238, 238, 0.5);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* Row Spacing */
@@ -605,4 +608,105 @@ body {
   .icon-button {
     padding: 8px;
   }
+}
+
+/* Text visibility classes for cards */
+.card .text-visible {
+  opacity: 1;
+  color: #FFFFFF;
+  transition: opacity 0.3s ease;
+}
+
+.card .text-hidden {
+  opacity: 0;
+  color: #FFFFFF;
+  transition: opacity 0.3s ease;
+}
+
+/* Add hover effect to show hidden text */
+.card:hover .text-hidden {
+  opacity: 1;
+}
+
+/* Ensure all text in cards is white */
+.space-table th,
+.space-table td {
+  color: #FFFFFF;
+}
+
+.experiment-name,
+.equipment-name {
+  color: #FFFFFF;
+}
+
+.form-control {
+  color: #FFFFFF !important;
+}
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.btn {
+  color: #FFFFFF;
+}
+
+/* Mission Status Bar Styles */
+.mission-status-bar {
+  background-color: var(--space-dark);
+  border-bottom: 1px solid rgba(0, 173, 181, 0.2);
+  margin-bottom: 20px;
+}
+
+.mission-title {
+  color: #FFFFFF;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+}
+
+.status-label,
+.timer-label {
+  color: #FFFFFF !important;
+  opacity: 0.7;
+}
+
+.status-badge,
+.timer-value {
+  color: #FFFFFF !important;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+}
+
+.mission-value {
+  color: #FFFFFF;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* List Items Text */
+.list-group-item {
+  color: #FFFFFF !important;
+}
+
+.list-group-item span {
+  color: #FFFFFF !important;
+}
+
+/* Table Text */
+.space-table th,
+.space-table td,
+.space-table .experiment-name,
+.space-table .equipment-name {
+  color: #FFFFFF !important;
+}
+
+/* Input Text */
+input[type="text"],
+.form-control {
+  color: #FFFFFF !important;
+}
+
+input[type="text"]::placeholder,
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.7) !important;
 }

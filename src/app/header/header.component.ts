@@ -1,10 +1,13 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  imports: [DatePipe],
+  standalone: true
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   missionName: string;

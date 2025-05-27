@@ -1,8 +1,8 @@
 <div class="crew-list">
   <div class="list-group">
     <div *ngFor="let member of crew" class="list-group-item d-flex justify-content-between align-items-center">
-      <span>{{ member }}</span>
-      <button class="btn btn-danger btn-sm" (click)="removeCrew(member)">
+      <span class="text-visible">{{ member }}</span>
+      <button class="btn btn-danger btn-sm text-hidden" (click)="removeCrew(member)" title="Remove crew member">
         <i class="fas fa-times"></i>
       </button>
     </div>
@@ -14,7 +14,7 @@
              class="form-control" 
              placeholder="Add crew member"
              #newCrew>
-      <button class="btn btn-primary" 
+      <button class="btn btn-primary text-visible" 
               (click)="addCrew(newCrew.value); newCrew.value = ''">
         <i class="fas fa-plus"></i> Add
       </button>

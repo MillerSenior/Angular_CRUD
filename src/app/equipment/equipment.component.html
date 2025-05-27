@@ -13,7 +13,7 @@
                 <tr *ngFor="let item of equipmentItems; let i = index">
                     <td>
                         <span *ngIf="equipmentBeingEdited !== item; else editBlock">
-                            <span class="equipment-name">{{item.name}}</span>
+                            <span class="equipment-name text-visible">{{item.name}}</span>
                         </span>
                         
                         <ng-template #editBlock>
@@ -26,16 +26,16 @@
                     </td>
                     <td class="actions">
                         <span *ngIf="equipmentBeingEdited !== item; else saveBlock">
-                            <button class="icon-button btn-edit" (click)="edit(item)" title="Edit Equipment">
+                            <button class="icon-button btn-edit text-hidden" (click)="edit(item)" title="Edit Equipment">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button class="icon-button btn-remove" (click)="remove(item)" title="Remove Equipment">
+                            <button class="icon-button btn-remove text-hidden" (click)="remove(item)" title="Remove Equipment">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </span>
                         
                         <ng-template #saveBlock>
-                            <button class="icon-button btn-save" (click)="save(getInputValue('equipment-input-' + i), item)" title="Save Changes">
+                            <button class="icon-button btn-save text-visible" (click)="save(getInputValue('equipment-input-' + i), item)" title="Save Changes">
                                 <i class="fas fa-save"></i>
                             </button>
                         </ng-template>
@@ -48,7 +48,7 @@
     <div class="card-footer">
         <div class="add-form">
             <input #name type="text" placeholder="New equipment name" aria-label="New equipment name"/>
-            <button class="btn-add" (click)="add(name.value)">
+            <button class="btn-add text-visible" (click)="add(name.value)">
                 <i class="fas fa-plus-circle"></i>
                 Add Equipment
             </button>

@@ -13,7 +13,7 @@
                 <tr *ngFor="let experiment of experiments; let i = index">
                     <td>
                         <span *ngIf="experimentBeingEdited !== experiment; else editBlock">
-                            <span class="experiment-name">{{experiment.name}}</span>
+                            <span class="experiment-name text-visible">{{experiment.name}}</span>
                         </span>
                         
                         <ng-template #editBlock>
@@ -26,16 +26,16 @@
                     </td>
                     <td class="actions">
                         <span *ngIf="experimentBeingEdited !== experiment; else saveBlock">
-                            <button class="icon-button btn-edit" (click)="edit(experiment)" title="Edit Experiment">
+                            <button class="icon-button btn-edit text-hidden" (click)="edit(experiment)" title="Edit Experiment">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button class="icon-button btn-remove" (click)="remove(experiment)" title="Remove Experiment">
+                            <button class="icon-button btn-remove text-hidden" (click)="remove(experiment)" title="Remove Experiment">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </span>
                         
                         <ng-template #saveBlock>
-                            <button class="icon-button btn-save" (click)="save(getInputValue('experiment-input-' + i), experiment)" title="Save Changes">
+                            <button class="icon-button btn-save text-visible" (click)="save(getInputValue('experiment-input-' + i), experiment)" title="Save Changes">
                                 <i class="fas fa-save"></i>
                             </button>
                         </ng-template>
@@ -48,7 +48,7 @@
     <div class="card-footer">
         <div class="add-form">
             <input #name type="text" placeholder="New experiment name" aria-label="New experiment name"/>
-            <button class="btn-add" (click)="add(name.value)">
+            <button class="btn-add text-visible" (click)="add(name.value)">
                 <i class="fas fa-plus-circle"></i>
                 Add Experiment
             </button>
