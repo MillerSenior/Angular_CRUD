@@ -1,39 +1,76 @@
-<div class="sidebar-content">
-  <div class="mission-info">
-    <div class="info-group">
-      <label>Mission Name:</label>
-      <span *ngIf="!editingMission; else editMissionBlock">
-        <span class="editable-text" (click)="editingMission = true;">{{ missionName }}</span>
-      </span>
-      <ng-template #editMissionBlock>
-        <div class="edit-field">
-          <input #mission (keyup.enter)="updateMission(mission.value)" 
-                 [value]=missionName
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <i class="fas fa-rocket me-2"></i>
+      <span class="brand-text">Mission Control</span>
+    </a>
+    
+    <div class="mission-info d-flex align-items-center">
+      <div class="mission-detail me-4">
+        <label class="text-muted small mb-1" for="missionName">Mission Name</label>
+        <div class="editable-field">
+          <span *ngIf="!editingMission" 
+                class="mission-value" 
+                role="button" 
+                (click)="editingMission = true" 
+                [attr.aria-label]="'Edit mission name: ' + missionName">
+            {{ missionName }}
+          </span>
+          <input *ngIf="editingMission" 
+                 type="text" 
+                 id="missionName"
+                 class="form-control form-control-sm" 
+                 [value]="missionName"
                  placeholder="Enter mission name"
-                 aria-label="Mission name"/>
-          <button class="btn-save" (click)="updateMission(mission.value)">
-            <i class="fas fa-check"></i> Save
-          </button>
+                 (keyup.enter)="updateMission($event.target.value)"
+                 (blur)="updateMission($event.target.value)">
         </div>
-      </ng-template>
-    </div>
-
-    <div class="info-group">
-      <label>Carrier Rocket:</label>
-      <span *ngIf="!editingRocket; else editRocketBlock">
-        <span class="editable-text" (click)="editingRocket = true;">{{ rocketName }}</span>
-      </span>
-      <ng-template #editRocketBlock>
-        <div class="edit-field">
-          <input #rocket (keyup.enter)="updateRocket(rocket.value)" 
-                 [value]=rocketName
+      </div>
+      
+      <div class="mission-detail">
+        <label class="text-muted small mb-1" for="rocketName">Rocket</label>
+        <div class="editable-field">
+          <span *ngIf="!editingRocket" 
+                class="mission-value" 
+                role="button"
+                (click)="editingRocket = true"
+                [attr.aria-label]="'Edit rocket name: ' + rocketName">
+            {{ rocketName }}
+          </span>
+          <input *ngIf="editingRocket" 
+                 type="text" 
+                 id="rocketName"
+                 class="form-control form-control-sm" 
+                 [value]="rocketName"
                  placeholder="Enter rocket name"
-                 aria-label="Rocket name"/>
-          <button class="btn-save" (click)="updateRocket(rocket.value)">
-            <i class="fas fa-check"></i> Save
-          </button>
+                 (keyup.enter)="updateRocket($event.target.value)"
+                 (blur)="updateRocket($event.target.value)">
         </div>
-      </ng-template>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="mission-status-bar">
+  <div class="container-fluid">
+    <div class="row align-items-center py-2">
+      <div class="col">
+        <h1 class="mission-title mb-0">Mission Dashboard</h1>
+      </div>
+      <div class="col-auto">
+        <div class="d-flex align-items-center">
+          <div class="status-indicator me-4">
+            <span class="status-label text-muted small d-block">Mission Status</span>
+            <span class="badge bg-success status-badge">
+              <i class="fas fa-circle me-1"></i>Active
+            </span>
+          </div>
+          <div class="mission-timer">
+            <span class="timer-label text-muted small d-block">Mission Time</span>
+            <span class="timer-value">{{ currentTime | date:'HH:mm:ss' }}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
